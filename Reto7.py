@@ -125,15 +125,6 @@ class Order:
                 
                 with open(filename, 'w') as f:
                     dump(menu_data, f, indent=2)
-    
-    def cargar_menu(self, menu_name):
-        filename = f"{menu_name}.json"
-        if os.path.exists(filename):
-            with open(filename, 'r') as f:
-                return load(f)
-        return None
-
-
 
     def __str__(self):
         items = []
@@ -183,7 +174,6 @@ if __name__ == "__main__":
     orden = Order()
     orden.crear_menu("menu_restaurante")
 
-    # Add items to menu
     orden.anadir_menu("menu_restaurante", "beverages", "Coca-Cola", {
         "price": 0, "sizes": ["small", "medium", "large"]
     })
@@ -192,14 +182,8 @@ if __name__ == "__main__":
         "price": 10000, "rice": True, "salad": False
     })
 
-    # Update an item
     orden.actualizar_menu("menu_restaurante", "beverages", "Coca-Cola", {
         "price": 1000, "sizes": ["small", "medium", "large"]
     })
 
-    # Remove an item
     orden.eliminar_menu("menu_restaurante", "beverages", "Coca-Cola")
-
-    # Load menu data
-    menu_data = orden.cargar_menu("menu_restaurante")
-    print("Menu data:", menu_data)
